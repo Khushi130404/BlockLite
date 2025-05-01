@@ -21,17 +21,17 @@ public class Main
         while(true)
         {
             count++;
-            System.out.println("New Block..."+count);
+            System.out.println("\nNew Block..."+count);
             ArrayList<String> tranList = new ArrayList<>();
             if(tran.equalsIgnoreCase("Quite")) break;
             while (true)
             {
-                System.out.println("Enter Transaction : ");
+                System.out.print("Enter Transaction : ");
                 tran = scan.nextLine().trim();
                 if(tran.equalsIgnoreCase("New") || tran.equalsIgnoreCase("Quite")) break;
                 tranList.add(tran);
             }
-            if(tran.equalsIgnoreCase("New"))
+            if(tran.equalsIgnoreCase("New") || tran.equalsIgnoreCase("Quite"))
             {
                 String tranArr[] = new String[tranList.size()];
                 int idx = 0;
@@ -47,7 +47,11 @@ public class Main
         }
         for(Block b : blockchain)
         {
-            System.out.println(b.getTransactions());
+            String tranB[] = b.getTransactions();
+            for(String tb : tranB)
+            {
+                System.out.println(tb);
+            }
             System.out.println(b.getBlockHash());
         }
     }
