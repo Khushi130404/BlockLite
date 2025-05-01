@@ -8,16 +8,16 @@ import java.util.Scanner;
 
 public class Main
 {
-    ArrayList<Block> blockchain = new ArrayList<>();
-
     public static void main(String[] args)
     {
         //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
         // to see how IntelliJ IDEA suggests fixing it.
         System.out.println("Hello and welcome!");
         Scanner scan = new Scanner(System.in);
+        ArrayList<Block> blockchain = new ArrayList<>();
         int count = 0;
         String tran = "";
+        int prevHash = 0;
         while(true)
         {
             count++;
@@ -34,13 +34,21 @@ public class Main
             if(tran.equalsIgnoreCase("New"))
             {
                 String tranArr[] = new String[tranList.size()];
-
+                int idx = 0;
+                for(String tr : tranList)
+                {
+                    tranArr[idx++] = tr;
+                }
+                Block genesisBlock = new Block(prevHash,tranArr);
+                prevHash = genesisBlock.getBlockHash();
+                blockchain.add(genesisBlock);
             }
             if(tran.equalsIgnoreCase("Quite")) break;
         }
-
-        String transactions[] = {"1000Rs Deposite, 200Rs Withdraw", "Deposite Failed for 2000Rs"} ;
-        Block genesisBlock = new Block(0,transactions);
-        System.out.println(genesisBlock.getBlockHash());
+        for(Block b : blockchain)
+        {
+            System.out.println(b.getTransactions());
+            System.out.println(b.getBlockHash());
+        }
     }
 }
