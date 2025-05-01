@@ -23,15 +23,15 @@ public class Main
             count++;
             System.out.println("\nNew Block..."+count);
             ArrayList<String> tranList = new ArrayList<>();
-            if(tran.equalsIgnoreCase("Quite")) break;
+            if(tran.equalsIgnoreCase("Quit")) break;
             while (true)
             {
                 System.out.print("Enter Transaction : ");
                 tran = scan.nextLine().trim();
-                if(tran.equalsIgnoreCase("New") || tran.equalsIgnoreCase("Quite")) break;
+                if(tran.equalsIgnoreCase("New") || tran.equalsIgnoreCase("Quit")) break;
                 tranList.add(tran);
             }
-            if(tran.equalsIgnoreCase("New") || tran.equalsIgnoreCase("Quite"))
+            if(tran.equalsIgnoreCase("New") || tran.equalsIgnoreCase("Quit"))
             {
                 String tranArr[] = new String[tranList.size()];
                 int idx = 0;
@@ -43,16 +43,19 @@ public class Main
                 prevHash = genesisBlock.getBlockHash();
                 blockchain.add(genesisBlock);
             }
-            if(tran.equalsIgnoreCase("Quite")) break;
+            if(tran.equalsIgnoreCase("Quit")) break;
         }
+        int idxB = 1;
         for(Block b : blockchain)
         {
+            System.out.println("\nBlock..."+idxB++);
             String tranB[] = b.getTransactions();
+            System.out.println("Transactions...");
             for(String tb : tranB)
             {
                 System.out.println(tb);
             }
-            System.out.println(b.getBlockHash());
+            System.out.println("Block Hash : "+b.getBlockHash());
         }
     }
 }
