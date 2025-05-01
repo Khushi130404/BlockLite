@@ -1,10 +1,13 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+
+// Hash = Digital Signature
+// Block = List of Transactions
+// Block contains 3 components = { List of Transactions + Prev Hash -> Current Hash  }
 
 public class Main
 {
-    // Hash = Digital Signature
-    // Block = List of Transactions
-    // Block contains 3 components = { List of Transactions + Prev Hash -> Current Hash  }
+    ArrayList<Block> blockchain = new ArrayList<>();
 
     public static void main(String[] args)
     {
@@ -12,8 +15,8 @@ public class Main
         // to see how IntelliJ IDEA suggests fixing it.
         System.out.println("Hello and welcome!");
 
-        String st[] = {"ab","cb","ac","ca"};
-        int hashCode = Arrays.hashCode(st);
-        System.out.println(hashCode);
+        String transactions[] = {"1000Rs Deposite, 200Rs Withdraw", "Deposite Failed for 2000Rs"} ;
+        Block genesisBlock = new Block(0,transactions);
+        System.out.println(genesisBlock.getBlockHash());
     }
 }
